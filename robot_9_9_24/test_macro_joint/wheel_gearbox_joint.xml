@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<robot name="my_robot" xmlns:xacro="http://wiki.ros.org/xacro">
+    
+    <!-- Included Macros -->
+    <xacro:include filename="gearbox_macro.xacro"/>
+    <xacro:include filename="wheel_macro.xacro"/>
+
+    <!-- Included Properties Origins-->
+    <xacro:property name="quad_1_gear_x" value="2.8125"/>
+    <xacro:property name="quad_1_gear_y" value="0"/>
+    <xacro:property name="quad_1_gear_z" value="1.875"/>
+
+    <!-- front left wheels and gearboxs-->
+    <xacro:gearbox_link 
+        prefix="front_left" 
+        width="1.25" 
+        length="1.875" 
+        height="0.1--------------------------" 
+        origin_xyz="2.8125 0.3 0" 
+        origin_rpy="0 0 0" 
+        mass="2" 
+        ixx="0.1" 
+        ixy="0" 
+        ixz="0" 
+        iyy="0.1" 
+        iyz="0" 
+        izz="0.1" 
+        material="aluminum" 
+        rgba="0.5 0.5 0.5 1.0"/>
+
+    <xacro:wheel_link 
+        prefix="front_left" 
+        diameter="0.2" 
+        length="0.15" 
+        origin_xyz="0.25 0.5 -0.1" 
+        origin_rpy="0 0 0" 
+        mass="1" 
+        ixx="0.05" 
+        ixy="0" 
+        ixz="0" 
+        iyy="0.05" 
+        iyz="0" 
+        izz="0.05" 
+        material="rubber" 
+        rgba="0 0 0 1"/>
+
+    <joint name="front_left_wheel_joint" type="revolute">
+        <parent link="front_left_gearbox"/> 
+        <child link="front_left_wheel"/> 
+        <origin xyz="0.25 0.5 0" rpy="0 0 0"/> 
+        <axis xyz="0 0 1"/> 
+    </joint>
+
+    <!-- front right wheels and gearboxs-->
+    <xacro:wheel_link 
+        prefix="front_right" 
+        diameter="0.1" 
+        length="0.05" 
+        origin_xyz="0.25 -0.5 -0.1" 
+        origin_rpy="0 0 0" 
+        mass="1" 
+        ixx="0.05" 
+        ixy="0" 
+        ixz="0" 
+        iyy="0.05" 
+        iyz="0" 
+        izz="0.05" 
+        material="rubber" 
+        rgba="0 0 0 1"/>
+
+    <xacro:gearbox_link 
+        prefix="front_right" 
+        width="0.1" 
+        length="0.2" 
+        height="0.1" 
+        origin_xyz="0 0.3 0" 
+        origin_rpy="0 0 0" 
+        mass="2" 
+        ixx="0.1" 
+        ixy="0" 
+        ixz="0" 
+        iyy="0.1" 
+        iyz="0" 
+        izz="0.1" 
+        material="aluminum" 
+        rgba="0.5 0.5 0.5 1.0"/>
+
+    <joint name="front_right_wheel_joint" type="revolute">
+        <parent link="front_right_gearbox"/> 
+        <child link="front_right_wheel"/> 
+        <origin xyz="0.25 0.5 0" rpy="0 0 0"/> 
+        <axis xyz="0 0 1"/> 
+    </joint>
+
+    <!-- back left wheels and gearboxs-->
+    <xacro:wheel_link 
+        prefix="back_left" 
+        diameter="0.1" 
+        length="0.05" 
+        origin_xyz="-0.25 0.5 -0.1" 
+        origin_rpy="0 0 0" 
+        mass="1" 
+        ixx="0.05" 
+        ixy="0" 
+        ixz="0" 
+        iyy="0.05" 
+        iyz="0" 
+        izz="0.05" 
+        material="rubber" 
+        rgba="0 0 0 1"/>
+
+    <xacro:gearbox_link 
+        prefix="back_left" 
+        width="0.1" 
+        length="0.2" 
+        height="0.1" 
+        origin_xyz="0 0.3 0" 
+        origin_rpy="0 0 0" 
+        mass="2" 
+        ixx="0.1" 
+        ixy="0" 
+        ixz="0" 
+        iyy="0.1" 
+        iyz="0" 
+        izz="0.1" 
+        material="aluminum" 
+        rgba="0.5 0.5 0.5 1.0"/>
+
+    <joint name="back_left_wheel_joint" type="revolute">
+        <parent link="back_left_gearbox"/> 
+        <child link="front_right_wheel"/> 
+        <origin xyz="0.25 0.5 0" rpy="0 0 0"/> 
+        <axis xyz="0 0 1"/> 
+    </joint>
+
+    <!-- back right wheels and gearboxs-->
+    <xacro:wheel_link 
+        prefix="back_right" 
+        diameter="0.1" 
+        length="0.05" 
+        origin_xyz="-0.25 -0.5 -0.1" 
+        origin_rpy="0 0 0" 
+        mass="1" 
+        ixx="0.05" 
+        ixy="0" 
+        ixz="0" 
+        iyy="0.05" 
+        iyz="0" 
+        izz="0.05" 
+        material="rubber" 
+        rgba="0 0 0 1"/>
+    
+    <xacro:gearbox_link 
+        prefix="back_right" 
+        width="0.1" 
+        length="0.2" 
+        height="0.1" 
+        origin_xyz="0 0.3 0" 
+        origin_rpy="0 0 0" 
+        mass="2" 
+        ixx="0.1" 
+        ixy="0" 
+        ixz="0" 
+        iyy="0.1" 
+        iyz="0" 
+        izz="0.1" 
+        material="aluminum" 
+        rgba="0.5 0.5 0.5 1.0"/>
+
+    <joint name="back_right_wheel_joint" type="revolute">
+        <parent link="back_right_gearbox"/> 
+        <child link="back_right_wheel"/> 
+        <origin xyz="0.25 0.5 0" rpy="0 0 0"/> 
+        <axis xyz="0 0 1"/> 
+    </joint>

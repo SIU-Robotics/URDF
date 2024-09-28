@@ -1,0 +1,37 @@
+<xacro:macro name="wheel_link" params="prefix diameter length origin_xyz origin_rpy mass ixx ixy ixz iyy iyz izz material rgba">
+    <link name="${prefix}_wheel">
+        
+        <inertial>
+            <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+            <mass value="${mass}"/>
+            <inertia 
+                ixx="${ixx}"  
+                ixy="${ixy}"  
+                ixz="${ixz}" 
+                iyy="${iyy}" 
+                iyz="${iyz}" 
+                izz="${izz}"/>
+        </inertial>
+        
+        <visual>
+            <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+            <geometry>
+                <cylinder radius="${diameter / 2}" length="${length}"/>
+            </geometry>
+            <material name="${material}">
+                <color rgba="${rgba}"/>
+            </material>
+        </visual>
+
+        <collision>
+            <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+            <geometry>
+                <cylinder radius="${diameter / 2}" length="${length}"/>
+            </geometry>
+            <material name="${material}">
+                <color rgba="${rgba}"/>
+            </material>
+        </collision>
+
+    </link>
+</xacro:macro>
