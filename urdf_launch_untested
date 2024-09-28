@@ -1,0 +1,33 @@
+#disclaimer
+#"You can also automatically generate the urdf in a launch file. 
+# This is convenient because it stays up to date and doesn’t use up hard drive space. 
+# However, it does take time to generate, so be aware that your launch file might take longer to start up."
+#   -Humble wiki
+
+#http://wiki.ros.org/urdf/XML/link
+#http://wiki.ros.org/urdf/XML/sensor
+#http://wiki.ros.org/urdf/XML/sensor/proposals
+
+#urdf package that you want to launch:
+urdf_package_string = 'turtlebot3_description'
+
+#path to the urdf package:
+urdf_path_string = 'turtlebot3_burger.urdf'
+
+from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription
+from launch.substitutions import PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
+
+
+def generate_launch_description():
+    ld = LaunchDescription()
+
+    ld.add_action(IncludeLaunchDescription(
+        PathJoinSubstitution([FindPackageShare('urdf_launch'), 'launch', 'display.launch.py']),
+        launch_arguments={
+            'urdf_package': urdf_package_string,
+            'urdf_package_path': PathJoinSubstitution(['urdf', urdf_path_string])}.items()
+    ))
+    return ld
+
