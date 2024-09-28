@@ -70,16 +70,25 @@
         <xacro:property name = "br_gb_origin_rpy" value = "0 0 0"/> <!--DO NOT TOUCH THIS-->
 
     <!--  This is for ALL gearboxs-->
-    <xacro:property name = "length" value="">
-    <xacro:property name = "width"  value="">
-    <xacro:property name = "height" value="">
-     width length height origin_xyz origin_rpy mass ixx ixy ixz iyy iyz izz material rgba
+    <xacro:property name = "length" value="" />
+    <xacro:property name = "width"  value="" />
+    <xacro:property name = "height" value="" />
 
+    <xacro:property name = "mass"     value="" />
+    <xacro:property name = "material" value="" />
+    <xacro:property name = "rgba"     value="" />
 
-    <xacro:gearbox_link prefix="front_left_wheel"  origin_xyz="${fl_gb_origin_xyz}" origin_rpy="${fl_gb_origin_rpy}"/>
-    <xacro:gearbox_link prefix="front_right_wheel" origin_xyz="${fl_gb_origin_xyz}" origin_rpy="${fr_gb_origin_rpy}"/>
-    <xacro:gearbox_link prefix="back_left_wheel"   origin_xyz="${fl_gb_origin_xyz}"  origin_rpy="${bl_gb_origin_rpy}"/>
-    <xacro:gearbox_link prefix="back_right_wheel"  origin_xyz="${fl_gb_origin_xyz}"  origin_rpy="${br_gb_origin_rpy}"/>
+    <xacro:property name = "gearbox_ixx" value="" />
+    <xacro:property name = "gearbox_ixy" value="" />
+    <xacro:property name = "gearbox_ixz" value="" />
+    <xacro:property name = "gearbox_iyy" value="" />
+    <xacro:property name = "gearbox_iyz" value="" />
+    <xacro:property name = "gearbox_izz" value="" />
+
+    <xacro:gearbox_link prefix="front_left_wheel"  origin_xyz="${fl_gb_origin_xyz}" origin_rpy="${fl_gb_origin_rpy}" width="${width}" length="${length}" height="${height}" mass="${mass}" ixx="${gearbox_ixx}" ixy="${gearbox_ixy}" ixz="${gearbox_ixz}" iyy="${gearbox_iyy}" iyz="${gearbox_iyz}" izz="${gearbox_izz}" material="${material}" rgba="${rgba}"/>
+    <xacro:gearbox_link prefix="front_right_wheel" origin_xyz="${fl_gb_origin_xyz}" origin_rpy="${fr_gb_origin_rpy}" width="${width}" length="${length}" height="${height}" mass="${mass}" ixx="${gearbox_ixx}" ixy="${gearbox_ixy}" ixz="${gearbox_ixz}" iyy="${gearbox_iyy}" iyz="${gearbox_iyz}" izz="${gearbox_izz}" material="${material}" rgba="${rgba}"/>
+    <xacro:gearbox_link prefix="back_left_wheel"   origin_xyz="${fl_gb_origin_xyz}" origin_rpy="${bl_gb_origin_rpy}" width="${width}" length="${length}" height="${height}" mass="${mass}" ixx="${gearbox_ixx}" ixy="${gearbox_ixy}" ixz="${gearbox_ixz}" iyy="${gearbox_iyy}" iyz="${gearbox_iyz}" izz="${gearbox_izz}" material="${material}" rgba="${rgba}"/>
+    <xacro:gearbox_link prefix="back_right_wheel"  origin_xyz="${fl_gb_origin_xyz}" origin_rpy="${br_gb_origin_rpy}" width="${width}" length="${length}" height="${height}" mass="${mass}" ixx="${gearbox_ixx}" ixy="${gearbox_ixy}" ixz="${gearbox_ixz}" iyy="${gearbox_iyy}" iyz="${gearbox_iyz}" izz="${gearbox_izz}" material="${material}" rgba="${rgba}"/>
 
 </robot>
 
