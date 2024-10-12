@@ -1,0 +1,4 @@
+ros2 launch urdf_tutorial display.launch.py model:=/home/robotics/Desktop/robot_9_9_24/test_macro_joint/frame_joints.urdf
+ros2 run rviz2 rviz2
+
+

@@ -1,0 +1,40 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="frame_link" params="prefix width length height origin_xyz origin_rpy mass ixx ixy ixz iyy iyz izz material rgba">
+        <link name="${prefix}_frame">
+        
+            <!-- Inertial properties -->
+            <inertial>
+                <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/> 
+                <mass value="${mass}"/> 
+                <inertia 
+                    ixx="${ixx}"  
+                    ixy="${ixy}"  
+                    ixz="${ixz}" 
+                    iyy="${iyy}" 
+                    iyz="${iyz}" 
+                    izz="${izz}"/> 
+            </inertial>
+            
+            <!-- Visual properties -->
+            <visual>
+                <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+                <geometry>
+                    <box size="${width} ${length} ${height}"/> 
+                </geometry>
+                <material name="${material}">
+                    <color rgba="${rgba}"/>
+                </material>
+            </visual>
+
+            <!-- Collision properties (no material/color) -->
+            <collision>
+                <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+                <geometry>
+                    <box size="${width} ${length} ${height}"/>
+                </geometry>
+            </collision>
+        
+        </link>
+    </xacro:macro>
+</robot>
+

@@ -1,0 +1,77 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<!--<xacro:macro name="gearbox_link" params="prefix width length height origin_xyz origin_rpy mass ixx ixy ixz iyy iyz izz material rgba">
+	    <link name="${prefix}_gearbox">
+		
+		<inertial>
+		    <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+		    <mass value="${mass}"/>
+		    <inertia 
+		        ixx="${ixx}"  
+		        ixy="${ixy}"  
+		        ixz="${ixz}" 
+		        iyy="${iyy}" 
+		        iyz="${iyz}" 
+		        izz="${izz}"/>
+		</inertial>
+		
+		<visual>
+		    <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+		    <geometry>
+		        <box size="${width} ${length} ${height}"/>
+		    </geometry>
+		    <material name="${material}">
+		        <color rgba="${rgba}"/>
+		    </material>
+		</visual>
+
+		<collision>
+		    <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+		    <geometry>
+		        <box size="${width} ${length} ${height}"/>
+		    </geometry>
+		    <material name="${material}">
+		        <color rgba="${rgba}"/>
+		    </material>
+		</collision>
+
+	    </link>
+	</xacro:macro>-->
+
+	<xacro:macro name="gearbox_link" params="prefix width length height origin_xyz origin_rpy mass ixx ixy ixz iyy iyz izz material rgba">
+	    <link name="${prefix}_gearbox">
+		
+		<!-- Inertial properties -->
+		<inertial>
+		    <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+		    <mass value="${mass}"/>
+		    <inertia 
+		        ixx="${ixx}"  
+		        ixy="${ixy}"  
+		        ixz="${ixz}" 
+		        iyy="${iyy}" 
+		        iyz="${iyz}" 
+		        izz="${izz}"/>
+		</inertial>
+		
+		<!-- Visual properties -->
+		<visual>
+		    <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+		    <geometry>
+		        <box size="${width} ${length} ${height}"/>
+		    </geometry>
+		    <material name="${material}">
+		        <color rgba="${rgba}"/>
+		    </material>
+		</visual>
+
+		<!-- Collision properties (no material/color needed here) -->
+		<collision>
+		    <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+		    <geometry>
+		        <box size="${width} ${length} ${height}"/>
+		    </geometry>
+		</collision>
+
+	    </link>
+	</xacro:macro>
+</robot>
