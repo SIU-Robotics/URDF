@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="frame_jointed" xmlns:xacro="http://www.ros.org/wiki/xacro">
-
-<!--for all resolute joints: <limit effort="100" velocity="1.0" lower="-1.57" upper="1.57"/> <!-- Example limits -->-->
+<!--check_urdf just_work.urdf-->
+<!--for all resolute joints: <limit effort="100" velocity="1.0" lower="-1.57" upper="1.57"/>-->
     
 <!--###########  Fast Changes  ###########-->
 
@@ -29,23 +29,23 @@
     <xacro:property name = "wheel_q4_origin" value = "${(3*frame_length/8) } ${-1*((frame_width/2) + (wheel_length/2)) } ${wheel_diameter/2}" />
 
     <!--Included Frame & Wheel Properties-->
-    <xacro:property name = "frame_mass" value = "0" />
-    <xacro:property name = "frame_ixx"  value = "0" />
+    <xacro:property name = "frame_mass" value = "5" />
+    <xacro:property name = "frame_ixx"  value = ".108" />
     <xacro:property name = "frame_ixy"  value = "0" />
     <xacro:property name = "frame_ixz"  value = "0" />
-    <xacro:property name = "frame_iyy"  value = "0" />
+    <xacro:property name="frame_iyy"    value = "0.240" />
     <xacro:property name = "frame_iyz"  value = "0" />
-    <xacro:property name = "frame_izz"  value = "0" />
+    <xacro:property name = "frame_izz"  value = "0.417" />
     <xacro:property name = "frame_material" value = "aluminum" />
     <xacro:property name ="frame_rgba" value ="0.5 0.5 0.5 1.0" />
 
-    <xacro:property name = "wheel_mass" value = "0" />
-    <xacro:property name = "wheel_ixx"  value = "0" />
-    <xacro:property name = "wheel_ixy"  value = "0" />
-    <xacro:property name = "wheel_ixz"  value = "0" />
-    <xacro:property name = "wheel_iyy"  value = "0" />
-    <xacro:property name = "wheel_iyz"  value = "0" />
-    <xacro:property name = "wheel_izz"  value = "0" />
+    <xacro:property name="wheel_mass" value=".1"/>
+    <xacro:property name="wheel_ixx" value="0.00196"/>
+    <xacro:property name="wheel_ixy" value="0.0"/>
+    <xacro:property name="wheel_ixz" value="0.0"/>
+    <xacro:property name="wheel_iyy" value="0.00196"/>
+    <xacro:property name="wheel_iyz" value="0.0"/>
+    <xacro:property name="wheel_izz" value="0.0005"/>
     <xacro:property name = "wheel_material" value = "plastic" />
     <xacro:property name="wheel_rgba" value="0 0 0 1"/>
 
@@ -61,13 +61,13 @@
     <xacro:property name = "gear_q4_origin" value = "${3*frame_length/8}  ${-3*frame_width/8} ${wheel_diameter/4}" />
 
     <!--Included Gearbox Properties-->
-    <xacro:property name = "gear_mass" value = "0" />
-    <xacro:property name = "gear_ixx"  value = "0" />
+    <xacro:property name = "gear_mass" value = "0.2" />
+    <xacro:property name = "gear_ixx"  value = "0.00064" />
     <xacro:property name = "gear_ixy"  value = "0" />
     <xacro:property name = "gear_ixz"  value = "0" />
-    <xacro:property name = "gear_iyy"  value = "0" />
+    <xacro:property name = "gear_iyy"  value = "0.00108" />
     <xacro:property name = "gear_iyz"  value = "0" />
-    <xacro:property name = "gear_izz"  value = "0" />
+    <xacro:property name = "gear_izz"  value = "0.00077" />
     <xacro:property name = "gear_material" value = "aluminum" />
     <xacro:property name="gear_rgba" value="0.5 0.5 0.5 1.0"/>
 
@@ -83,15 +83,15 @@
         height="${frame_height}" 
         origin_xyz="${frame_origin}" 
         origin_rpy="0 0 0" 
+        material="${frame_material}"
+        rgba="${frame_rgba}"
         mass="${frame_mass}" 
         ixx="${frame_ixx}" 
         ixy="${frame_ixy}" 
         ixz="${frame_ixz}" 
         iyy="${frame_iyy}" 
         iyz="${frame_iyz}" 
-        izz="${frame_izz}" 
-        material="${frame_material}" 
-        rgba="${frame_rgba}"/>
+        izz="${frame_izz}"/>
 
     <!--Gearbox Links-->
     <xacro:gearbox_link 
@@ -101,15 +101,16 @@
         height="${gear_height}" 
         origin_xyz="${gear_q1_origin}" 
         origin_rpy="0 0 0" 
-        mass="${gear_mass}" 
+        material="${gear_material}" 
+        rgba="${gear_rgba}"/>
+        <!--mass="${gear_mass}" 
         ixx="${gear_mass}" 
         ixy="${gear_mass}" 
         ixz="${gear_mass}" 
         iyy="${gear_mass}" 
         iyz="${gear_mass}" 
-        izz="${gear_mass}" 
-        material="${gear_material}" 
-        rgba="${gear_rgba}"/>
+        izz="${gear_mass}"-->
+
 
     <xacro:gearbox_link 
         prefix="front_right" 
@@ -118,15 +119,16 @@
         height="${gear_height}" 
         origin_xyz="${gear_q4_origin}" 
         origin_rpy="0 0 0" 
-        mass="${gear_mass}" 
+        material="${gear_material}" 
+        rgba="${gear_rgba}"/>
+        <!--mass="${gear_mass}" 
         ixx="${gear_mass}" 
         ixy="${gear_mass}" 
         ixz="${gear_mass}" 
         iyy="${gear_mass}" 
         iyz="${gear_mass}" 
-        izz="${gear_mass}" 
-        material="${gear_material}" 
-        rgba="${gear_rgba}"/>
+        izz="${gear_mass}"-->
+
 
     <xacro:gearbox_link 
         prefix="back_left" 
@@ -135,15 +137,15 @@
         height="${gear_height}" 
         origin_xyz="${gear_q2_origin}" 
         origin_rpy="0 0 0" 
-        mass="${gear_mass}" 
+        material="${gear_material}" 
+        rgba="${gear_rgba}"/>
+    	<!--mass="${gear_mass}" 
         ixx="${gear_mass}" 
         ixy="${gear_mass}" 
         ixz="${gear_mass}" 
         iyy="${gear_mass}" 
         iyz="${gear_mass}" 
-        izz="${gear_mass}" 
-        material="${gear_material}" 
-        rgba="${gear_rgba}"/>
+        izz="${gear_mass}"-->
 
     <xacro:gearbox_link 
         prefix="back_right" 
@@ -152,15 +154,15 @@
         height="${gear_height}" 
         origin_xyz="${gear_q3_origin}" 
         origin_rpy="0 0 0" 
-        mass="${gear_mass}" 
+        material="${gear_material}" 
+        rgba="${gear_rgba}"/>
+    	<!--mass="${gear_mass}" 
         ixx="${gear_mass}" 
         ixy="${gear_mass}" 
         ixz="${gear_mass}" 
         iyy="${gear_mass}" 
         iyz="${gear_mass}" 
-        izz="${gear_mass}" 
-        material="${gear_material}" 
-        rgba="${gear_rgba}"/>
+        izz="${gear_mass}"-->
 
     <!--Wheel Links-->
     <xacro:wheel_link 
@@ -231,44 +233,39 @@
     
     <!--Gearbox Origins-->
         <xacro:property name = "fl_gear_joint_origin" value = "${3*frame_length/8}  ${3*frame_width/8}  ${wheel_diameter}" />
-        <xacro:property name = "fr_gear_joint_origin" value = "${-3*frame_length/8} ${3*frame_width/8}  ${wheel_diameter}" />
-        <xacro:property name = "bl_gear_joint_origin" value = "${-3*frame_length/8} ${-3*frame_width/8} ${wheel_diameter}" />
-        <xacro:property name = "br_gear_joint_origin" value = "${3*frame_length/8}  ${-3*frame_width/8} ${wheel_diameter}" />
+        <xacro:property name = "fr_gear_joint_origin" value = "${3*frame_length/8} ${-3*frame_width/8}  ${wheel_diameter}" />
+        <xacro:property name = "bl_gear_joint_origin" value = "${-3*frame_length/8} ${3*frame_width/8} ${wheel_diameter}" />
+        <xacro:property name = "br_gear_joint_origin" value = "${-3*frame_length/8}  ${-3*frame_width/8} ${wheel_diameter}" />
 
     <!--Wheel Origins-->
         <xacro:property name = "fl_wheel_joint_origin" value = "${(3*frame_length/8)}  ${1*(frame_width/2)}  ${wheel_diameter/2}" />
-        <xacro:property name = "fr_wheel_joint_origin" value = "${(-3*frame_length/8)} ${1*(frame_width/2)}  ${wheel_diameter/2}" />
-        <xacro:property name = "bl_wheel_joint_origin" value = "${(-3*frame_length/8)} ${-1*(frame_width/2)} ${wheel_diameter/2}" />
-        <xacro:property name = "br_wheel_joint_origin" value = "${(3*frame_length/8)}  ${-1*(frame_width/2)} ${wheel_diameter/2}" />
-
+        <xacro:property name = "fr_wheel_joint_origin" value = "${(3*frame_length/8)} ${-1*(frame_width/2)}  ${wheel_diameter/2}" />
+        <xacro:property name = "bl_wheel_joint_origin" value = "${(-3*frame_length/8)} ${1*(frame_width/2)} ${wheel_diameter/2}" />
+        <xacro:property name = "br_wheel_joint_origin" value = "${(-3*frame_length/8)}  ${-1*(frame_width/2)} ${wheel_diameter/2}" />
 
     <!--Gearbox to Frame Joints-->
-    <joint name="front_left_gearbox_frame_joint" type="revolute">
+    <joint name="front_left_gearbox_frame_joint" type="fixed">
         <parent link="whole_frame"/> 
         <child link="front_left_gearbox"/> 
         <origin xyz="${fl_gear_joint_origin}" rpy="0 0 0"/> 
-        <axis xyz="0 1 0"/> 
     </joint>
 
-    <joint name="front_right_gearbox_frame_joint" type="revolute">
+    <joint name="front_right_gearbox_frame_joint" type="fixed">
         <parent link="whole_frame"/> 
         <child link="front_right_gearbox"/> 
         <origin xyz="${fr_gear_joint_origin}" rpy="0 0 0"/> 
-        <axis xyz="0 1 0"/> 
     </joint>
 
-    <joint name="back_left_gearbox_frame_joint" type="revolute">
+    <joint name="back_left_gearbox_frame_joint" type="fixed">
         <parent link="whole_frame"/> 
         <child link="back_left_gearbox"/> 
         <origin xyz="${bl_gear_joint_origin}" rpy="0 0 0"/> 
-        <axis xyz="0 1 0"/> 
     </joint>
 
-    <joint name="back_right_gearbox_frame_joint" type="revolute">
+    <joint name="back_right_gearbox_frame_joint" type="fixed">
         <parent link="whole_frame"/> 
         <child link="back_right_gearbox"/> 
         <origin xyz="${br_gear_joint_origin}" rpy="0 0 0"/> 
-        <axis xyz="0 1 0"/> 
     </joint>
 
     <!--Gearbox to Wheels Joints-->
@@ -299,4 +296,13 @@
         <origin xyz="${br_wheel_joint_origin}" rpy="0 0 0"/> 
         <axis xyz="0 0 1"/> 
     </joint>
+
+    <!-- Dummy link to avoid root link inertia issue -->
+    <link name="base_link"/>
+    <joint name="base_frame_link" type="fixed">
+        <parent link="base_link"/>
+        <child link="whole_frame"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
 </robot>
